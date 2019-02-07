@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="foodVm"
+                  type="com.example.myapplication.MyViewModel"/>
+        <variable name="picasso"
+                  type="com.squareup.picasso.Picasso"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView android:id="@+id/dishImage"
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   android:layout_marginBottom="2dp"
+                   app:layout_constraintBottom_toTopOf="@+id/dishTitlsLayout"
+
+        />
+
+        <LinearLayout
+                android:id="@+id/dishTitlsLayout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/dishImage"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:weightSum="10">
+
+            <TextView android:id="@+id/dishTitls"
+                      android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_weight="8.5"
+                      android:text="@{foodVm.title}"
+                      android:textStyle="bold"
+
+
+            />
+            <TextView android:id="@+id/dishRating"
+                      android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1.5"
+                      android:text="@{foodVm.social_rank}"
+                      android:textStyle="bold"
+            />
+
+
+        </LinearLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
