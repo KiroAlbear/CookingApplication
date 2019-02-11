@@ -19,24 +19,48 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import android.support.v7.widget.GridLayoutManager
+import android.view.SearchEvent
+import android.widget.Toast
+import com.mancj.materialsearchbar.MaterialSearchBar
+import android.app.Activity
+import android.content.Context
+import android.support.v4.content.ContextCompat.getSystemService
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 
 
-class MainActivity : AppCompatActivity(), ApiHelper {
+class MainActivity : AppCompatActivity(), ApiHelper, MaterialSearchBar.OnSearchActionListener {
+    override fun onButtonClicked(buttonCode: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onSearchStateChanged(enabled: Boolean) {
+        return
+    }
+
+    override fun onSearchConfirmed(text: CharSequence?) {
+        viewmodel.loadSearchDishes(text.toString())
+
+        val imm = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val view = this.currentFocus
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
 
 
     lateinit var databinding: ActivityMainBinding
-    lateinit var recycleAdapter:FoodRecycleAdapter
+    lateinit var recycleAdapter: FoodRecycleAdapter
+    lateinit var viewmodel: MyViewModel
     override fun onCalledApi(body: RecipeResponseModel) {
 
 
-        recycleAdapter=FoodRecycleAdapter(body)
-        databinding.foodRecycleView.adapter=recycleAdapter
+        recycleAdapter = FoodRecycleAdapter(body)
+        databinding.foodRecycleView.adapter = recycleAdapter
 
     }
 
     override fun onSearchApi(body: RecipeResponseModel) {
-        recycleAdapter=FoodRecycleAdapter(body)
-        databinding.foodRecycleView.adapter=recycleAdapter
+        recycleAdapter = FoodRecycleAdapter(body)
+        databinding.foodRecycleView.adapter = recycleAdapter
     }
 
 
@@ -47,26 +71,17 @@ class MainActivity : AppCompatActivity(), ApiHelper {
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         databinding.foodRecycleView.layoutManager = LinearLayoutManager(this)
         databinding.foodRecycleView.setHasFixedSize(true)
-        databinding.foodRecycleView.layoutManager = GridLayoutManager(this,1,GridLayoutManager.VERTICAL,false)
+        databinding.foodRecycleView.layoutManager = GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false)
 
 
-        loadJson()
+        viewmodel = MyViewModel(this)
+        viewmodel.loadSampleDishes()
 
-
-
-    }
-
-    fun loadJson() {
-        var apiHolder: JsonApiHolder = RetrofitCalling.getApiHolder()
-        var observable: Disposable? = apiHolder.getSampleDishes(CallStrings.APIKEY)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { response ->
-                onCalledApi(response)
-
-            }
+        databinding.searchView.setOnSearchActionListener(this)
 
 
     }
+
 
 }
+

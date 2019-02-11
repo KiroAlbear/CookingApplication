@@ -2,7 +2,7 @@ package com.example.myapplication.ApiCall
 
 class CallStrings {
     companion object {
-        val APIKEY:String = "b2e64016d521446a851880733bd8e8c1"
+        val APIKEY:String = "1c4b20f8377168050b58cb579e9c08ff"
         val BASE_URL:String="https://www.food2fork.com/api/"
     }
 

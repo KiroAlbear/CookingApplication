@@ -26,7 +26,7 @@ interface JsonApiHolder {
     fun searchIngredients(
         @Query("key") key: String
         , @Query("q") ingredients: String
-    )
+    ):Observable<RecipeResponseModel>
 
 
 }

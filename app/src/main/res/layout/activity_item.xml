@@ -23,7 +23,8 @@
                 app:layout_constraintBottom_toTopOf="@id/imageGuideline"
                 android:layout_marginBottom="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:scaleType="fitXY"/>
 
         <LinearLayout
                 android:orientation="horizontal"

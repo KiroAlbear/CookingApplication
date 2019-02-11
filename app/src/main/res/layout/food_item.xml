@@ -24,6 +24,8 @@
                    app:layout_constraintTop_toTopOf="parent"
                    android:layout_marginBottom="2dp"
                    app:layout_constraintBottom_toTopOf="@+id/dishTitlsLayout"
+                   android:scaleType="fitXY"
+
 
         />
 
