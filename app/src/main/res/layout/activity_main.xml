@@ -17,28 +17,37 @@
             android:layout_height="match_parent"
             tools:context=".MainActivity">
 
-        <com.nicolettilu.hiddensearchwithrecyclerview.HiddenSearchWithRecyclerView
-                android:id="@+id/hiddenRecyclerView"
+        <com.mancj.materialsearchbar.MaterialSearchBar
+                android:id="@+id/search_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:scrollToBottomBeforeHide="true"
-                app:scrollToTopBeforeShow="true"
-                app:filterWhileTyping="false"
-                app:visibleAtInit="true">
+                style="@style/MaterialSearchBarLight"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/guideline"
+                app:mt_hint="hint"
+                android:text="@={mvm.searchText}"
+               >
+
+        </com.mancj.materialsearchbar.MaterialSearchBar>
+
+        <android.support.v7.widget.RecyclerView android:id="@+id/foodRecycleView"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="0dp"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintHorizontal_bias="0.5"
+                                                app:layout_constraintTop_toTopOf="@+id/guideline">
 
 
-
-            <android.support.v7.widget.RecyclerView android:id="@+id/foodRecycleView"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="match_parent"
-                                                    app:layout_constraintTop_toTopOf="parent"
-                                                    app:layout_constraintStart_toStartOf="parent"
-                                                    app:layout_constraintEnd_toEndOf="parent"
-                                                    app:layout_constraintBottom_toBottomOf="parent">
-
-            </android.support.v7.widget.RecyclerView>
-
-        </com.nicolettilu.hiddensearchwithrecyclerview.HiddenSearchWithRecyclerView>
+        </android.support.v7.widget.RecyclerView>
+        <android.support.constraint.Guideline android:layout_width="wrap_content"
+                                              android:layout_height="wrap_content"
+                                              android:id="@+id/guideline"
+                                              android:orientation="horizontal"
+                                              app:layout_constraintGuide_percent="0.09"/>
 
 
     </android.support.constraint.ConstraintLayout>

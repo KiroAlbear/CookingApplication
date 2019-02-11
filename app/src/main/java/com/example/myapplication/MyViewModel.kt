@@ -19,4 +19,10 @@ class MyViewModel(
     var image_url: String,
     var social_rank: String,
     var publisher_url: String
-) : Serializable
+) : Serializable {
+    var searchText: String = ""
+
+  fun onSearch() {
+
+    }
+}
