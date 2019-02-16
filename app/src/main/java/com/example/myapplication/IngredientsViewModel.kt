@@ -1,5 +1,5 @@
 package com.example.myapplication
 
-class IngredientsViewModel {
+class IngredientsViewModel(var text: String,  var number: String) {
 
 }

@@ -1,5 +1,7 @@
 package com.example.myapplication.ApiCall
 
+import android.content.Context
+import android.widget.Toast
 import com.example.myapplication.Request.JsonApiHolder
 import com.example.myapplication.Response.RecipeBody
 
@@ -10,9 +12,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitCalling{
 
-    private lateinit var ret:Retrofit
-    private lateinit var apiHolder: JsonApiHolder
-    private lateinit var call:Call<List<RecipeBody>>
 
     companion object {
         fun getRetrofitInstance():Retrofit{
@@ -29,6 +28,11 @@ class RetrofitCalling{
         fun getApiHolder(): JsonApiHolder {
             return getRetrofitInstance().create(JsonApiHolder::class.java)
         }
+
+        fun noApiResponse(context: Context){
+            Toast.makeText(context,"Api Has Expired",Toast.LENGTH_SHORT).show()
+        }
+
     }
 
 

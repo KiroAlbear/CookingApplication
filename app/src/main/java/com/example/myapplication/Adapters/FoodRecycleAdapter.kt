@@ -79,9 +79,9 @@ class FoodRecycleAdapter(recipeResponseModel: RecipeResponseModel) :
 
         }
 
-             Picasso.get()
+        Picasso.get()
             .load(foods.recipes[p1].image_url)
-            .placeholder(R.drawable.ic_launcher_foreground)
+            .placeholder(R.mipmap.ginger)
             .into(p0.foodLayoutBinding.imageLayout.dishImage)
 
 

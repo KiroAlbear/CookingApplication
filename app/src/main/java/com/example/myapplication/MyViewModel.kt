@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.app.Application
 import android.content.Context
 import android.databinding.BindingAdapter
 import android.graphics.Bitmap
@@ -22,15 +23,15 @@ import java.util.*
 class MyViewModel(
 
 ) : Serializable {
-     lateinit var publisher: String
-     lateinit var f2f_url: String
-     lateinit var title: String
-     lateinit var source_url: String
-     lateinit var recipe_id: String
-     lateinit var image_url: String
-     lateinit var social_rank: String
-     lateinit var publisher_url: String
-     lateinit var apiHelperInterface: ApiHelper
+    lateinit var publisher: String
+    lateinit var f2f_url: String
+    lateinit var title: String
+    lateinit var source_url: String
+    lateinit var recipe_id: String
+    lateinit var image_url: String
+    lateinit var social_rank: String
+    lateinit var publisher_url: String
+    lateinit var apiHelperInterface: ApiHelper
 
 
     constructor(
@@ -57,26 +58,31 @@ class MyViewModel(
         this.apiHelperInterface = apiHelperInterface
     }
 
-    fun loadSampleDishes(){
+    fun loadSampleDishes(context: Context) {
         var apiHolder: JsonApiHolder = RetrofitCalling.getApiHolder()
         var observable: Disposable? = apiHolder.getSampleDishes(CallStrings.APIKEY)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { response ->
-                apiHelperInterface.onCalledApi(response)
+
+                if (response.toString().isNotEmpty())
+                    apiHelperInterface.onCalledApi(response)
+                else
+                    RetrofitCalling.noApiResponse(context)
 
             }
     }
 
-    fun loadSearchDishes(ingredients:String){
+    fun loadSearchDishes(ingredients: String) {
 
         var apiHolder: JsonApiHolder = RetrofitCalling.getApiHolder()
 
-        var observable: Disposable? = apiHolder.searchIngredients(CallStrings.APIKEY,ingredients)
+        var observable: Disposable? = apiHolder.searchIngredients(CallStrings.APIKEY, ingredients)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { response ->
-                apiHelperInterface.onSearchApi(response)
+                if (response.toString().isNotEmpty())
+                    apiHelperInterface.onSearchApi(response)
 
             }
     }

@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), ApiHelper, MaterialSearchBar.OnSearchA
 
 
         viewmodel = MyViewModel(this)
-        viewmodel.loadSampleDishes()
+        viewmodel.loadSampleDishes(this)
 
         databinding.searchView.setOnSearchActionListener(this)
 

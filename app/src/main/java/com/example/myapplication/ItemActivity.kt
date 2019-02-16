@@ -46,8 +46,8 @@ class ItemActivity : AppCompatActivity(), ingredientApi {
 
         itemModel.loadimage(databinding.itemDishImage.dishImage)
         databinding.itemVM = itemModel
-        itemRecycle = ItemRecycleAdapter(body.recipes.ingredients)
-        databinding.itemIngredients.adapter=itemRecycle
+        itemRecycle = ItemRecycleAdapter(body.recipes.ingredients, this)
+        databinding.itemIngredients.adapter = itemRecycle
 
 
     }
@@ -60,7 +60,7 @@ class ItemActivity : AppCompatActivity(), ingredientApi {
         bundle = intent.extras
 
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_item)
-        databinding.itemIngredients.layoutManager=LinearLayoutManager(this)
+        databinding.itemIngredients.layoutManager = LinearLayoutManager(this)
         databinding.itemIngredients.setHasFixedSize(true)
         recipeId = bundle.get("rid") as String
         getIngredients()
@@ -73,7 +73,9 @@ class ItemActivity : AppCompatActivity(), ingredientApi {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { response ->
-                onGetIngredients(response)
+
+                if (response.toString().isNotEmpty())
+                    onGetIngredients(response)
 
             }
 

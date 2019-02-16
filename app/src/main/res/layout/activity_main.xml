@@ -23,9 +23,12 @@
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 style="@style/MaterialSearchBarLight"
+                app:mt_textColor="@color/white"
+                app:mt_searchBarColor="@color/scarlet"
+                app:mt_placeholderColor="@color/white"
                 android:layout_height="0dp"
                 app:mt_hint="hint"
-                android:layout_weight="0.8">
+                android:layout_weight="0.65">
 
         </com.mancj.materialsearchbar.MaterialSearchBar>
 

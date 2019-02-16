@@ -9,9 +9,19 @@
     </style>
 
     <style name="ingredientsStyle" >
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/blackColor</item>
+    </style>
 
+    <style name="itemTitleStyle">
+        <item name="android:background">@color/scarletLight</item>
+        <item name="android:textColor">@color/itemTitleColor</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

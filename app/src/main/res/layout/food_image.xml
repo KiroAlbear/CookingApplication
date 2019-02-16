@@ -11,20 +11,21 @@
                   type="com.example.myapplication.MyViewModel"/>
     </data>
 
-<RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <ImageView android:id="@+id/dishImage"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:scaleType="fitXY"/>
+        <ImageView android:id="@+id/dishImage"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:scaleType="fitXY"
+                   android:src="@mipmap/ginger"/>
 
-    <TextView android:id="@+id/shadowLayout"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/shadowColor"/>
+        <TextView android:id="@+id/shadowLayout"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:background="@color/shadowColor"/>
 
-</RelativeLayout>
+    </RelativeLayout>
 
 </layout>

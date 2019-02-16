@@ -12,30 +12,37 @@
 
 
     <android.support.constraint.ConstraintLayout
-
+            android:id="@+id/ingLayout"
+            android:background="@color/ingGrayBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/numberTextView"
+                  android:layout_width="wrap_content"
+                  android:background="@drawable/textview_rounded"
+                  android:layout_height="wrap_content"
+                  android:text="@{ingVM.number}"
+                  android:textAlignment="center"
+                  android:paddingTop="2dp"
+                  android:paddingRight="0.5dp"
+                  android:layout_marginStart="4dp"
+                  android:textStyle="bold"
+                  android:textColor="@color/white"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:layout_constraintBottom_toBottomOf="parent"/>
         <TextView
-                android:id="@+id/ingredientsLine"
-                android:layout_width="match_parent"
+                android:id="@+id/ingredientsContent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:text="Hello from the other side !"
+                android:text="@{ingVM.text}"
                 style="@style/ingredientsStyle"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <TextView
-                android:id="@+id/ingredientsBottomLine"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/blackColor"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="4dp"
+                app:layout_constraintStart_toEndOf="@+id/numberTextView"
                 app:layout_constraintEnd_toEndOf="parent"
-
-        />
+                android:layout_marginEnd="8dp"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>
