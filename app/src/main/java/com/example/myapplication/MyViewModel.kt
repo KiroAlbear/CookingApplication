@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.content.Context
 import android.databinding.BindingAdapter
+import android.graphics.Bitmap
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast

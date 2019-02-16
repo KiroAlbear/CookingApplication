@@ -44,7 +44,7 @@ class ItemActivity : AppCompatActivity(), ingredientApi {
             body.recipes.title
         )
 
-        itemModel.loadimage(databinding.itemDishImage)
+        itemModel.loadimage(databinding.itemDishImage.dishImage)
         databinding.itemVM = itemModel
         itemRecycle = ItemRecycleAdapter(body.recipes.ingredients)
         databinding.itemIngredients.adapter=itemRecycle

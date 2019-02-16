@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout
+        xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
 >
     <data>
         <variable name="ingVM"
@@ -16,10 +18,24 @@
         <TextView
                 android:id="@+id/ingredientsLine"
                 android:layout_width="match_parent"
-                android:textFontWeight="15dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:text="Hello from the other side !"
-                style="@style/ingredientsStyle"/>
+                style="@style/ingredientsStyle"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+                android:id="@+id/ingredientsBottomLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/blackColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+        />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -16,6 +16,7 @@ import android.util.DisplayMetrics
 import android.view.*
 import android.widget.AdapterView
 import com.example.myapplication.ItemActivity
+import com.example.myapplication.databinding.FoodImageBinding
 
 
 import com.squareup.picasso.Picasso
@@ -33,8 +34,17 @@ class FoodRecycleAdapter(recipeResponseModel: RecipeResponseModel) :
             p0,
             false
         )
+//
+//        var foodImageBinding: FoodImageBinding = DataBindingUtil.inflate(
+//            LayoutInflater.from(p0.context),
+//            com.example.myapplication.R.layout.food_image,
+//            p0,
+//            false
+//        )
+
+
         var myHolder = MyViewHolder(itemBinding.root, itemBinding)
-        val height = p0.measuredHeight / 2
+        val height = p0.measuredHeight / 3
         myHolder.itemView.layoutParams.height = height
         return myHolder
     }
@@ -59,12 +69,12 @@ class FoodRecycleAdapter(recipeResponseModel: RecipeResponseModel) :
         p0.foodLayoutBinding.foodVm = foodrecipe
 
 
-        p0.foodLayoutBinding.dishImage.setOnClickListener {
+        p0.foodLayoutBinding.imageLayout.dishImage.setOnClickListener {
 
 
-           // listener.onClick(it, foods.recipes[p1])
-            var intent = Intent(it.context,ItemActivity::class.java)
-            intent.putExtra("rid",foods.recipes[p1].recipe_id)
+            // listener.onClick(it, foods.recipes[p1])
+            var intent = Intent(it.context, ItemActivity::class.java)
+            intent.putExtra("rid", foods.recipes[p1].recipe_id)
             it.context.startActivity(intent)
 
         }
@@ -72,17 +82,18 @@ class FoodRecycleAdapter(recipeResponseModel: RecipeResponseModel) :
              Picasso.get()
             .load(foods.recipes[p1].image_url)
             .placeholder(R.drawable.ic_launcher_foreground)
-            .into(p0.foodLayoutBinding.dishImage)
+            .into(p0.foodLayoutBinding.imageLayout.dishImage)
 
 
     }
 
 
-
     companion object {
-        class MyViewHolder(itemView: View, foodLayoutBinding: FoodItemBinding) : RecyclerView.ViewHolder(itemView) {
+        class MyViewHolder(itemView: View, foodLayoutBinding: FoodItemBinding) :
+            RecyclerView.ViewHolder(itemView) {
 
             var foodLayoutBinding: FoodItemBinding = foodLayoutBinding
+
 
         }
     }

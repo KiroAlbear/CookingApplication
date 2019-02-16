@@ -6,5 +6,8 @@
     <color name="foodTitle">#ffffff</color>
     <color name="rankColor">#ffc907</color>
     <color name="ingredients">#ff0707</color>
+    <color name="shadowColor">#63000000</color>
+    <color name="blackColor">#000000</color>
+
 
 </resources>
