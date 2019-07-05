@@ -5,11 +5,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.myapplication.IngredientsViewModel
+import com.example.myapplication.viewModel.IngredientsViewModel
 import com.example.myapplication.databinding.OneIngredientLayoutBinding
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.ShapeDrawable
 import android.os.Build
 import android.support.annotation.RequiresApi
 import com.example.myapplication.R

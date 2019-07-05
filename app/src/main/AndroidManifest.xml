@@ -11,14 +11,14 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".WebViewActivity">
+        <activity android:name=".activities.WebViewActivity">
         </activity>
         <activity
-                android:name=".ItemActivity"
+                android:name=".activities.ItemActivity"
                 android:theme="@style/Theme.Design.Light.NoActionBar">
         </activity>
         <activity
-                android:name=".MainActivity"
+                android:name=".activities.MainActivity"
                 android:theme="@style/Theme.Design.Light.NoActionBar"
                 android:windowSoftInputMode="adjustNothing">
             <intent-filter>

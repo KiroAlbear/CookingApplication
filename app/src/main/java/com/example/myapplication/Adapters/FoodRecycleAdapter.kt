@@ -1,22 +1,14 @@
 package com.example.myapplication.Adapters
 
-import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
-import android.databinding.adapters.CardViewBindingAdapter
-import android.os.Bundle
-import android.support.v7.view.menu.MenuView
 import android.support.v7.widget.RecyclerView
-import com.example.myapplication.MyViewModel
+import com.example.myapplication.viewModel.MyViewModel
 import com.example.myapplication.R
-import com.example.myapplication.Response.RecipeBody
 import com.example.myapplication.Response.RecipeResponseModel
 import com.example.myapplication.databinding.FoodItemBinding
-import android.util.DisplayMetrics
 import android.view.*
-import android.widget.AdapterView
-import com.example.myapplication.ItemActivity
-import com.example.myapplication.databinding.FoodImageBinding
+import com.example.myapplication.activities.ItemActivity
 
 
 import com.squareup.picasso.Picasso

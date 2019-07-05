@@ -7,7 +7,7 @@
 
     <data>
         <variable name="foodVm"
-                  type="com.example.myapplication.MyViewModel"/>
+                  type="com.example.myapplication.viewModel.MyViewModel"/>
     </data>
 
     <android.support.constraint.ConstraintLayout

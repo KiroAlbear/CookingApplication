@@ -7,7 +7,7 @@
     <data>
         <variable
                 name="mvm"
-                type="com.example.myapplication.MyViewModel"/>
+                type="com.example.myapplication.viewModel.MyViewModel"/>
     </data>
 
 
@@ -15,7 +15,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".MainActivity"
+            tools:context=".activities.MainActivity"
             android:weightSum="10"
             android:orientation="vertical">
 

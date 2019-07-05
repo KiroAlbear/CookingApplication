@@ -1,24 +1,14 @@
-package com.example.myapplication
+package com.example.myapplication.viewModel
 
-import android.app.Application
 import android.content.Context
-import android.databinding.BindingAdapter
-import android.graphics.Bitmap
-import android.view.View
-import android.widget.ImageView
-import android.widget.Toast
-import com.example.myapplication.Adapters.FoodRecycleAdapter
 import com.example.myapplication.ApiCall.ApiHelper
 import com.example.myapplication.ApiCall.CallStrings
 import com.example.myapplication.ApiCall.RetrofitCalling
 import com.example.myapplication.Request.JsonApiHolder
-import com.example.myapplication.Response.RecipeBody
-import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.io.Serializable
-import java.util.*
 
 class MyViewModel(
 

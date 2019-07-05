@@ -1,6 +1,7 @@
-package com.example.myapplication
+package com.example.myapplication.viewModel
 
 import android.widget.ImageView
+import com.example.myapplication.R
 import com.squareup.picasso.Picasso
 
 class ItemViewModel(

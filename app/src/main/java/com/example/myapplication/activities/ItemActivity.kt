@@ -1,25 +1,19 @@
-package com.example.myapplication
+package com.example.myapplication.activities
 
-import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
-import android.widget.LinearLayout
-import com.example.myapplication.Adapters.FoodRecycleAdapter
 import com.example.myapplication.Adapters.ItemRecycleAdapter
-import com.example.myapplication.ApiCall.ApiHelper
 import com.example.myapplication.ApiCall.CallStrings
 import com.example.myapplication.ApiCall.RetrofitCalling
 import com.example.myapplication.ApiCall.ingredientApi
+import com.example.myapplication.viewModel.ItemViewModel
+import com.example.myapplication.R
 import com.example.myapplication.Request.JsonApiHolder
 import com.example.myapplication.Response.ItemBody
-import com.example.myapplication.Response.RecipeBody
-import com.example.myapplication.Response.RecipeResponseModel
 import com.example.myapplication.databinding.ActivityItemBinding
 
-import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
