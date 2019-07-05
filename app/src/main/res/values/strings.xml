@@ -1,12 +1,4 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string-array name="StrArray">
-        <item>Hello World</item>
-        <item>Welcome Back</item>
-        <item>Welcome Back Again</item>
-        <item>Go To Hell</item>
-        <item>Never Give Up</item>
-        <item>Shame On You</item>
-        <item>lalalalalala</item>
-    </string-array>
+    <string name="websiteURL">myURL</string>
 </resources>

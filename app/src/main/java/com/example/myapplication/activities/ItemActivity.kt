@@ -1,5 +1,6 @@
 package com.example.myapplication.activities
 
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import com.example.myapplication.Adapters.ItemRecycleAdapter
 import com.example.myapplication.ApiCall.CallStrings
 import com.example.myapplication.ApiCall.RetrofitCalling
 import com.example.myapplication.ApiCall.ingredientApi
+import com.example.myapplication.ApiCall.webViewInterface
 import com.example.myapplication.viewModel.ItemViewModel
 import com.example.myapplication.R
 import com.example.myapplication.Request.JsonApiHolder
@@ -18,11 +20,20 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class ItemActivity : AppCompatActivity(), ingredientApi {
+class ItemActivity : AppCompatActivity(), ingredientApi,webViewInterface {
+
     lateinit var bundle: Bundle
     lateinit var recipeId: String
     lateinit var databinding: ActivityItemBinding
     lateinit var itemRecycle: ItemRecycleAdapter
+
+
+    override fun onDescriptionButtoneClick(websiteURL: String) {
+        var intent:Intent = Intent(this,WebViewActivity::class.java)
+        intent.putExtra(resources.getString(R.string.websiteURL),websiteURL)
+        startActivity(intent)
+    }
+
 
 
     override fun onGetIngredients(body: ItemBody) {
@@ -38,10 +49,12 @@ class ItemActivity : AppCompatActivity(), ingredientApi {
             body.recipes.title
         )
 
+        itemModel.webViewInterface = this
         itemModel.loadimage(databinding.itemDishImage.dishImage)
         databinding.itemVM = itemModel
         itemRecycle = ItemRecycleAdapter(body.recipes.ingredients, this)
         databinding.itemIngredients.adapter = itemRecycle
+
 
 
     }

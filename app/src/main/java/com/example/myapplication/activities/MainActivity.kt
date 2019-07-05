@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity(), ApiHelper, MaterialSearchBar.OnSearchA
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-
     lateinit var databinding: ActivityMainBinding
     lateinit var recycleAdapter: FoodRecycleAdapter
     lateinit var viewmodel: MyViewModel
