@@ -13,7 +13,6 @@ import com.example.myapplication.ApiCall.webViewInterface
 import com.example.myapplication.viewModel.ItemViewModel
 import com.example.myapplication.R
 import com.example.myapplication.Request.JsonApiHolder
-import com.example.myapplication.Response.ItemBody
 import com.example.myapplication.databinding.ActivityItemBinding
 
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -36,28 +35,28 @@ class ItemActivity : AppCompatActivity(), ingredientApi,webViewInterface {
 
 
 
-    override fun onGetIngredients(body: ItemBody) {
-        var itemModel = ItemViewModel(
-            body.recipes.publisher,
-            body.recipes.f2f_url,
-            body.recipes.ingredients,
-            body.recipes.source_url,
-            body.recipes.recipe_id,
-            body.recipes.image_url,
-            body.recipes.social_rank,
-            body.recipes.publisher_url,
-            body.recipes.title
-        )
-
-        itemModel.webViewInterface = this
-        itemModel.loadimage(databinding.itemDishImage.dishImage)
-        databinding.itemVM = itemModel
-        itemRecycle = ItemRecycleAdapter(body.recipes.ingredients, this)
-        databinding.itemIngredients.adapter = itemRecycle
-
-
-
-    }
+//    override fun onGetIngredients(body: ItemBody) {
+//        var itemModel = ItemViewModel(
+//            body.recipes.publisher,
+//            body.recipes.f2f_url,
+//            body.recipes.ingredients,
+//            body.recipes.source_url,
+//            body.recipes.recipe_id,
+//            body.recipes.image_url,
+//            body.recipes.social_rank,
+//            body.recipes.publisher_url,
+//            body.recipes.title
+//        )
+//
+//        itemModel.webViewInterface = this
+//        itemModel.loadimage(databinding.itemDishImage.dishImage)
+//        databinding.itemVM = itemModel
+//        itemRecycle = ItemRecycleAdapter(body.recipes.ingredients, this)
+//        databinding.itemIngredients.adapter = itemRecycle
+//
+//
+//
+//    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,22 +69,22 @@ class ItemActivity : AppCompatActivity(), ingredientApi,webViewInterface {
         databinding.itemIngredients.layoutManager = LinearLayoutManager(this)
         databinding.itemIngredients.setHasFixedSize(true)
         recipeId = bundle.get("rid") as String
-        getIngredients()
+//        getIngredients()
 
     }
 
-    fun getIngredients() {
-        var apiHolder: JsonApiHolder = RetrofitCalling.getApiHolder()
-        var observable: Disposable? = apiHolder.getIngredients(CallStrings.APIKEY, recipeId)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { response ->
-
-                if (response.toString().isNotEmpty())
-                    onGetIngredients(response)
-
-            }
-
-
-    }
+//    fun getIngredients() {
+//        var apiHolder: JsonApiHolder = RetrofitCalling.getApiHolder()
+//        var observable: Disposable? = apiHolder.getIngredients(CallStrings.APIKEY, recipeId)
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe { response ->
+//
+//                if (response.toString().isNotEmpty())
+//                    onGetIngredients(response)
+//
+//            }
+//
+//
+//    }
 }

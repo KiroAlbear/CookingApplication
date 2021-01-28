@@ -1,8 +1,8 @@
 package com.example.myapplication.Adapters
 
 import android.view.View
-import com.example.myapplication.Response.RecipeBody
+import com.example.myapplication.Response.RecipeItem
 
 interface ViewHolderInterface {
-    fun onClick(view: View, data: RecipeBody)
+    fun onClick(view: View, data: RecipeItem)
 }

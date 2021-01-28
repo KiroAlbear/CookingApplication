@@ -5,19 +5,19 @@ import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import com.example.myapplication.viewModel.MyViewModel
 import com.example.myapplication.R
-import com.example.myapplication.Response.RecipeResponseModel
 import com.example.myapplication.databinding.FoodItemBinding
 import android.view.*
+import com.example.myapplication.Response.RecipeItemResponseModel
 import com.example.myapplication.activities.ItemActivity
 
 
 import com.squareup.picasso.Picasso
 
 
-class FoodRecycleAdapter(recipeResponseModel: RecipeResponseModel) :
+class FoodRecycleAdapter(recipeResponseModel: RecipeItemResponseModel) :
     RecyclerView.Adapter<FoodRecycleAdapter.Companion.MyViewHolder>() {
 
-    val foods: RecipeResponseModel = recipeResponseModel
+    val foods: RecipeItemResponseModel = recipeResponseModel
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MyViewHolder {
         var itemBinding: FoodItemBinding = DataBindingUtil.inflate(
@@ -42,21 +42,14 @@ class FoodRecycleAdapter(recipeResponseModel: RecipeResponseModel) :
     }
 
     override fun getItemCount(): Int {
-        return foods.count.toInt()
+        return foods.recipes.count()
     }
 
     override fun onBindViewHolder(p0: MyViewHolder, p1: Int) {
 
-        var foodrecipe = MyViewModel(
-            foods.recipes[p1].publisher,
-            foods.recipes[p1].f2f_url,
-            foods.recipes[p1].title,
-            foods.recipes[p1].source_url,
-            foods.recipes[p1].recipe_id,
-            foods.recipes[p1].image_url,
-            foods.recipes[p1].social_rank,
-            foods.recipes[p1].publisher_url
-        )
+        var foodrecipe = MyViewModel(foods.recipes[p1].title,
+            foods.recipes[p1].sourceUrl,
+            foods.recipes[p1].id,foods.recipes[p1].title)
 
         p0.foodLayoutBinding.foodVm = foodrecipe
 
@@ -66,13 +59,13 @@ class FoodRecycleAdapter(recipeResponseModel: RecipeResponseModel) :
 
             // listener.onClick(it, foods.recipes[p1])
             var intent = Intent(it.context, ItemActivity::class.java)
-            intent.putExtra("rid", foods.recipes[p1].recipe_id)
+            intent.putExtra("rid", foods.recipes[p1].id)
             it.context.startActivity(intent)
 
         }
 
         Picasso.get()
-            .load(foods.recipes[p1].image_url)
+            .load(foods.recipes[p1].image)
             .placeholder(R.mipmap.ginger)
             .into(p0.foodLayoutBinding.imageLayout.dishImage)
 

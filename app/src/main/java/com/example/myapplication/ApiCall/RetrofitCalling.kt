@@ -1,9 +1,9 @@
 package com.example.myapplication.ApiCall
 
 import android.content.Context
+import android.content.res.Resources
 import android.widget.Toast
 import com.example.myapplication.Request.JsonApiHolder
-import com.example.myapplication.Response.RecipeBody
 
 import retrofit2.Call
 import retrofit2.Retrofit

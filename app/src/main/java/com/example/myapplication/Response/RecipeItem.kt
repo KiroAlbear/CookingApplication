@@ -3,9 +3,13 @@ package com.example.myapplication.Response
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class ReciptInformationRespopnseModel (
+class RecipeItemResponseModel(
+    var recipes:List<RecipeItem>
+    ):Serializable
+
+class RecipeItem (
     @SerializedName("id")
-    var id: Int ,
+    var id: String ,
     @SerializedName("title")
     var title: String? ,
     @SerializedName("sourceUrl")
