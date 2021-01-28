@@ -3,19 +3,20 @@ package com.example.myapplication.Adapters
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
-import com.example.myapplication.viewModel.MyViewModel
+import com.example.myapplication.viewModels.MyViewModel
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FoodItemBinding
 import android.view.*
+import com.example.myapplication.GlobalResources.GlobalStrings
 import com.example.myapplication.Response.RecipeItemResponseModel
-import com.example.myapplication.activities.ItemActivity
+import com.example.myapplication.activities.WebViewActivity
 
 
 import com.squareup.picasso.Picasso
 
 
-class FoodRecycleAdapter(recipeResponseModel: RecipeItemResponseModel) :
-    RecyclerView.Adapter<FoodRecycleAdapter.Companion.MyViewHolder>() {
+class AllRecipeRecycleAdapter(recipeResponseModel: RecipeItemResponseModel) :
+    RecyclerView.Adapter<AllRecipeRecycleAdapter.Companion.MyViewHolder>() {
 
     val foods: RecipeItemResponseModel = recipeResponseModel
 
@@ -47,6 +48,8 @@ class FoodRecycleAdapter(recipeResponseModel: RecipeItemResponseModel) :
 
     override fun onBindViewHolder(p0: MyViewHolder, p1: Int) {
 
+
+
         var foodrecipe = MyViewModel(foods.recipes[p1].title,
             foods.recipes[p1].sourceUrl,
             foods.recipes[p1].id,foods.recipes[p1].title)
@@ -57,9 +60,10 @@ class FoodRecycleAdapter(recipeResponseModel: RecipeItemResponseModel) :
         p0.foodLayoutBinding.imageLayout.dishImage.setOnClickListener {
 
 
-            // listener.onClick(it, foods.recipes[p1])
-            var intent = Intent(it.context, ItemActivity::class.java)
-            intent.putExtra("rid", foods.recipes[p1].id)
+//            listener.onClick(it, foods.recipes[p1])
+            var intent = Intent(it.context, WebViewActivity::class.java)
+            intent.putExtra(GlobalStrings.RECIPE_ITEM_ID_KEY, foods.recipes[p1].id)
+            intent.putExtra(GlobalStrings.RECIPE_ITEM_URL_KEY, foods.recipes[p1].sourceUrl)
             it.context.startActivity(intent)
 
         }
@@ -69,8 +73,9 @@ class FoodRecycleAdapter(recipeResponseModel: RecipeItemResponseModel) :
             .placeholder(R.mipmap.ginger)
             .into(p0.foodLayoutBinding.imageLayout.dishImage)
 
-
     }
+
+
 
 
     companion object {

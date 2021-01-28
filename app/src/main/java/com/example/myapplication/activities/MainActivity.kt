@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 
-import com.example.myapplication.ApiCall.ApiHelper
+import com.example.myapplication.Navigators.AllRecipeNavigator
 
 
 import com.example.myapplication.databinding.ActivityMainBinding
@@ -13,13 +13,14 @@ import android.support.v7.widget.GridLayoutManager
 import com.mancj.materialsearchbar.MaterialSearchBar
 import android.app.Activity
 import android.view.inputmethod.InputMethodManager
-import com.example.myapplication.Adapters.FoodRecycleAdapter
+import com.example.myapplication.Adapters.AllRecipeRecycleAdapter
 import com.example.myapplication.R
+import com.example.myapplication.Response.RecipeItem
 import com.example.myapplication.Response.RecipeItemResponseModel
-import com.example.myapplication.viewModel.MyViewModel
+import com.example.myapplication.viewModels.MyViewModel
 
 
-class MainActivity : AppCompatActivity(), ApiHelper, MaterialSearchBar.OnSearchActionListener {
+class MainActivity : AppCompatActivity(), AllRecipeNavigator, MaterialSearchBar.OnSearchActionListener {
 
     override fun onButtonClicked(buttonCode: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -30,28 +31,29 @@ class MainActivity : AppCompatActivity(), ApiHelper, MaterialSearchBar.OnSearchA
     }
 
     override fun onSearchConfirmed(text: CharSequence?) {
-//        viewmodel.loadSearchDishes(text.toString())
-//
-//        val imm = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-//        val view = this.currentFocus
-//        imm.hideSoftInputFromWindow(view.windowToken, 0)
+        viewmodel.loadSearchDishes(text.toString())
+
+        val imm = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val view = this.currentFocus
+
+        // close keyboard
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     lateinit var databinding: ActivityMainBinding
-    lateinit var recycleAdapter: FoodRecycleAdapter
+    lateinit var recycleAdapter: AllRecipeRecycleAdapter
     lateinit var viewmodel: MyViewModel
     override fun onCalledApi(body: RecipeItemResponseModel) {
 
-
-        recycleAdapter = FoodRecycleAdapter(body)
+        recycleAdapter = AllRecipeRecycleAdapter(body)
         databinding.foodRecycleView.adapter = recycleAdapter
 
     }
 
-//    override fun onSearchApi(body: RecipeResponseModel) {
-////        recycleAdapter = FoodRecycleAdapter(body)
-////        databinding.foodRecycleView.adapter = recycleAdapter
-//    }
+    override fun onSearchApi(body: List<RecipeItem>) {
+        recycleAdapter = AllRecipeRecycleAdapter(RecipeItemResponseModel(body))
+        databinding.foodRecycleView.adapter = recycleAdapter
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

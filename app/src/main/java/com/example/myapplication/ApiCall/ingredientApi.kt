@@ -1,6 +1,6 @@
 package com.example.myapplication.ApiCall
 
 
-interface ingredientApi {
-//    fun onGetIngredients(body: ItemBody)
-}
+//interface ingredientApi {
+////    fun onGetIngredients(body: ItemBody)
+//}

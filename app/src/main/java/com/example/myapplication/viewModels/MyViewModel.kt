@@ -1,25 +1,22 @@
-package com.example.myapplication.viewModel
+package com.example.myapplication.viewModels
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.Log
-import com.example.myapplication.ApiCall.ApiHelper
-import com.example.myapplication.ApiCall.CallStrings
+import com.example.myapplication.Navigators.AllRecipeNavigator
+import com.example.myapplication.GlobalResources.GlobalStrings
 import com.example.myapplication.ApiCall.RetrofitCalling
-import com.example.myapplication.R
 import com.example.myapplication.Request.JsonApiHolder
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.io.Serializable
-import kotlin.math.log
 
 class MyViewModel(
 
 ) : Serializable {
 
 
-    private lateinit var apiHelperInterface: ApiHelper
+    lateinit var navigator: AllRecipeNavigator
     var recipe_id: String? = null
     var title: String? = null
     var image_url: String? = null
@@ -38,23 +35,23 @@ class MyViewModel(
         this.image_url = image_url
     }
 
-    constructor(apiHelperInterface: ApiHelper) : this() {
-        this.apiHelperInterface = apiHelperInterface
+    constructor(allRecipeNavigatorInterface: AllRecipeNavigator) : this() {
+        this.navigator = allRecipeNavigatorInterface
     }
 
     fun loadSampleDishes(context: Context) {
         var apiHolder: JsonApiHolder = RetrofitCalling.getApiHolder()
-        var observable: Disposable? = apiHolder.getSampleDishes(CallStrings.APIKEY,true,"vegetarian,dessert",10)
+        var observable: Disposable? = apiHolder.getRandomDishes(GlobalStrings.APIKEY,"",100)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe ({response ->
 
                     if (response.toString().isNotEmpty())
-                        apiHelperInterface.onCalledApi(response)
+                        navigator.onCalledApi(response)
                     else
                         RetrofitCalling.noApiResponse(context)
             },{
-                    er -> Log.d("loadSampleDishes",er.toString())
+                    err -> Log.d("loadSampleDishes",err.toString())
 
               }
 
@@ -62,19 +59,23 @@ class MyViewModel(
             )
     }
 
-//    fun loadSearchDishes(ingredients: String) {
-//
-//        var apiHolder: JsonApiHolder = RetrofitCalling.getApiHolder()
-//
-//        var observable: Disposable? = apiHolder.searchIngredients(CallStrings.APIKEY, ingredients)
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe { response ->
-//                if (response.toString().isNotEmpty())
-//                    apiHelperInterface.onSearchApi(response)
-//
-//            }
-//    }
+    fun loadSearchDishes(ingredients: String) {
+
+        var apiHolder: JsonApiHolder = RetrofitCalling.getApiHolder()
+
+        var observable: Disposable? = apiHolder.getIngredients(GlobalStrings.APIKEY,ingredients)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({ response ->
+                if (response.toString().isNotEmpty())
+                    Log.d("loadSampleDishes",response.toString())
+                    navigator.onSearchApi(response)
+
+            },{
+                err -> Log.d("loadSampleDishes",err.toString())
+              }
+            )
+    }
 
 
 }
