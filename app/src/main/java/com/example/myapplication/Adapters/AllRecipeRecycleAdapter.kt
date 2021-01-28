@@ -27,13 +27,6 @@ class AllRecipeRecycleAdapter(recipeResponseModel: RecipeItemResponseModel) :
             p0,
             false
         )
-//
-//        var foodImageBinding: FoodImageBinding = DataBindingUtil.inflate(
-//            LayoutInflater.from(p0.context),
-//            com.example.myapplication.R.layout.food_image,
-//            p0,
-//            false
-//        )
 
 
         var myHolder = MyViewHolder(itemBinding.root, itemBinding)
@@ -60,7 +53,7 @@ class AllRecipeRecycleAdapter(recipeResponseModel: RecipeItemResponseModel) :
         p0.foodLayoutBinding.imageLayout.dishImage.setOnClickListener {
 
 
-//            listener.onClick(it, foods.recipes[p1])
+
             var intent = Intent(it.context, WebViewActivity::class.java)
             intent.putExtra(GlobalStrings.RECIPE_ITEM_ID_KEY, foods.recipes[p1].id)
             intent.putExtra(GlobalStrings.RECIPE_ITEM_URL_KEY, foods.recipes[p1].sourceUrl)

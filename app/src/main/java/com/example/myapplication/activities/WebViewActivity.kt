@@ -63,7 +63,4 @@ class WebViewActivity : AppCompatActivity(),WebViewNavigator {
 
     }
 
-    fun loadURL(url:String){
-
-    }
 }

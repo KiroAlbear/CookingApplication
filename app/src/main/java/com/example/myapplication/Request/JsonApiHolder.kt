@@ -23,6 +23,7 @@ interface JsonApiHolder {
         limitLicense: Boolean = false
     ): Observable<RecipeItemResponseModel>
 
+
     @GET("/recipes/findByIngredients?")
     fun getIngredients(
         @Query("apiKey")
@@ -39,6 +40,7 @@ interface JsonApiHolder {
         ignorePantry: String = ""
     ): Observable<List<RecipeItem>>
 
+
     @GET("/recipes/{id}/information?")
     fun getOneRecipeInformation(
         @Path("id")
@@ -48,12 +50,6 @@ interface JsonApiHolder {
 
     ): Observable<RecipeItem>
 
-//
-//    @GET("search?")
-//    fun searchIngredients(
-//        @Query("key") key: String
-//        , @Query("q") ingredients: String
-//    ):Observable<RecipeResponseModel>
 
 
 }
