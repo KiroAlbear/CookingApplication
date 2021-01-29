@@ -12,6 +12,7 @@ import com.example.myapplication.databinding.ActivityMainBinding
 import android.support.v7.widget.GridLayoutManager
 import com.mancj.materialsearchbar.MaterialSearchBar
 import android.app.Activity
+import android.support.v4.widget.SwipeRefreshLayout
 import android.view.inputmethod.InputMethodManager
 import com.example.myapplication.Adapters.AllRecipeRecycleAdapter
 import com.example.myapplication.R
@@ -46,13 +47,18 @@ class MainActivity : AppCompatActivity(), AllRecipeNavigator, MaterialSearchBar.
     override fun onCalledApi(body: RecipeItemResponseModel) {
 
         recycleAdapter = AllRecipeRecycleAdapter(body)
-        databinding.foodRecycleView.adapter = recycleAdapter
+        databinding.recipesRecycleView.adapter = recycleAdapter
+        databinding.swipeRefreshLayout.isRefreshing = false
 
     }
 
     override fun onSearchApi(body: List<RecipeItem>) {
+
         recycleAdapter = AllRecipeRecycleAdapter(RecipeItemResponseModel(body))
-        databinding.foodRecycleView.adapter = recycleAdapter
+        databinding.recipesRecycleView.adapter = recycleAdapter
+        recycleAdapter.notifyDataSetChanged()
+
+
     }
 
 
@@ -61,15 +67,26 @@ class MainActivity : AppCompatActivity(), AllRecipeNavigator, MaterialSearchBar.
         setContentView(R.layout.activity_main)
 
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        databinding.foodRecycleView.layoutManager = LinearLayoutManager(this)
-        databinding.foodRecycleView.setHasFixedSize(true)
-        databinding.foodRecycleView.layoutManager = GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false)
+        databinding.recipesRecycleView.layoutManager = LinearLayoutManager(this)
+        databinding.recipesRecycleView.setHasFixedSize(true)
+        databinding.recipesRecycleView.layoutManager = GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false)
 
 
         viewmodel = MyViewModel(this)
         viewmodel.loadSampleDishes(this)
 
         databinding.searchView.setOnSearchActionListener(this)
+
+
+
+        databinding.swipeRefreshLayout.setOnRefreshListener {
+
+                viewmodel.loadSampleDishes(applicationContext)
+
+
+
+         }
+
 
 
     }

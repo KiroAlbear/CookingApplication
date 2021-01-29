@@ -41,7 +41,7 @@ class MyViewModel(
 
     fun loadSampleDishes(context: Context) {
         var apiHolder: JsonApiHolder = RetrofitCalling.getApiHolder()
-        var observable: Disposable? = apiHolder.getRandomDishes(GlobalStrings.APIKEY,"",100)
+        var observable: Disposable? = apiHolder.getRandomDishes(GlobalStrings.APIKEY,"",50)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe ({response ->
